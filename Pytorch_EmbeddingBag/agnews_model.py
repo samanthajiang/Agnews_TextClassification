@@ -86,7 +86,7 @@ def evaluate(dataloader):
 for epoch in range(1, EPOCHS + 1):
     epoch_start_time = time.time()
     train(train_dataloader)
-    accu_val = evaluate(test_dataloader)
+    accu_val = evaluate(valid_dataloader)
     if total_accu is not None and total_accu > accu_val:
       scheduler.step()
     else:
