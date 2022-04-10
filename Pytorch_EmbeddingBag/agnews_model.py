@@ -101,8 +101,8 @@ for epoch in range(1, EPOCHS + 1):
 # In PyTorch, the learnable parameters (i.e. weights and biases) of an torch.nn.Module model are contained in the model’s parameters (accessed with model.parameters()).
 for name, param in model.named_parameters():
     print(f"Layer: {name} | Size: {param.size()} | Values : {param[:2]} \n")
-# state_dict(): Returns a dictionary containing a whole state of the module.
 
+# state_dict(): Returns a dictionary containing a whole state of the module. state_dict()是不保存模型结构的，如果要用在部分结构不同的模型上，详见知乎文章。
 torch.save(model.state_dict(), savepath)
 
 
