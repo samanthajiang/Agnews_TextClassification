@@ -5,10 +5,8 @@
 
 import pandas as pd
 import torch
-import pandas as np
-from transformers import AutoTokenizer
 
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, random_split
 from torchtext.vocab import build_vocab_from_iterator
 from torchtext.data.utils import get_tokenizer
 
@@ -55,8 +53,13 @@ class Ag_news_data(Dataset):
         return sample
 
 
-agnews_train = Ag_news_data(Path + 'train.csv')
+train_dataset = Ag_news_data(Path + 'train.csv')
 agnews_test = Ag_news_data(Path + 'test.csv')
+
+num_train = int(len(train_dataset) * 0.95)
+train_data, valid_data = random_split(train_dataset,[num_train,len(train_dataset)-num_train])
+agnews_train = train_data
+agnews_valid = valid_data
 
 # DataLoader是一个iterator对象
 # DataLoader传入的是上面的Ag_news_data对象，可以自动iterate整个数据集
@@ -77,4 +80,5 @@ def collate_batch(batch):
     return label_list.to(device), text_list.to(device), offsets.to(device)
 
 train_dataloader = DataLoader(agnews_train, batch_size=64, shuffle=True, collate_fn=collate_batch)
+valid_dataloader = DataLoader(agnews_valid, batch_size=64, shuffle=True, collate_fn=collate_batch)
 test_dataloader = DataLoader(agnews_test, batch_size=64, shuffle=True, collate_fn=collate_batch)
