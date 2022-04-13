@@ -2,4 +2,4 @@
 
 [Explaining the PyTorch EmbeddingBag Layer](https://jamesmccaffrey.wordpress.com/2021/04/14/explaining-the-pytorch-embeddingbag-layer/)
 
-
+[Pytorch模型的保存与迁移]https://www.ylkz.life/deeplearning/p12977315/
