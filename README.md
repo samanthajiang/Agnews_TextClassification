@@ -1,3 +1,4 @@
 # Agnews_TextClassification
 
-TextClassification using pytorch and huggingface transformer
+TextClassification implementation using Pytorch Embaddingbag and Huggingface Transformer<br>
+
